@@ -75,6 +75,6 @@ Ready to secure your ride? Booking directly with us is faster than an app.
   <h3 style="color: #000000;">📱 Scan & Save for Later</h3>
   <p>Never lose your favorite drivers. Scan this code to instantly share this page with friends, family, or colleagues.</p>
   
-  <!-- This QR code links directly to your GitHub repo -->
-  <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://github.com/MajharulIslam/nyc-rideshare" alt="Website QR Code" width="150" style="border: 4px solid #000000; padding: 10px; background-color: white;">
+  <!-- The link after 'data=' is what the QR code will read when scanned -->
+  <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://rockjohny360.github.io/Rideshare-Services-" alt="Website QR Code" width="150" style="border: 4px solid #000000; padding: 10px; background-color: white;">
 </div>
