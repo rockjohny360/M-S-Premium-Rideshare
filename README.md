@@ -49,7 +49,7 @@ Skip the app wait times, the unpredictable pricing, and the unknown drivers. We 
 <!-- <img src="INSERT_YOUR_IMAGE_LINK_HERE" alt="Hourly Service" width="100%" style="border-radius: 10px; margin-bottom: 15px;"> -->
 
 Need a driver on standby? We offer dedicated hourly rates for running errands, multi-stop meetings, or VIP city tours.
-*   **Within New York City:** $66 to $70 per hour
+*   **Within New York City:** $60 to $70 per hour
 *   **Outside New York City (Tri-State area):** $100 per hour
 
 ---
