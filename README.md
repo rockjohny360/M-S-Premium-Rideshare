@@ -1,6 +1,6 @@
 <div align="center">
   <!-- Matches the flashy car banner from your business card -->
-  <img src="https://images.unsplash.com/photo-1617788138017-80ad40651399?auto=format&fit=crop&w=1000&q=80" alt="Premium NYC Rideshare Banner" style="border-bottom: 4px solid #ff4d4d; margin-bottom: 20px;">
+  <img src="Logo background.jpg" alt="Premium NYC Rideshare Banner" style="border-bottom: 4px solid #ff4d4d; margin-bottom: 20px;">
   
   <h1 style="color: #000000; text-transform: uppercase; letter-spacing: 2px;">M&S Premium Rideshare</h1>
   <p><b style="color: #ff4d4d;">TOP QUALITY RIDE SERVICES | LUXURY | NYC & TRI-STATE</b></p>
