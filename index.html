@@ -257,6 +257,48 @@
             .fleet-details { width: 50%; }
         }
 
+/* Interactive Fare Estimator */
+        .estimator-box {
+            background: var(--primary-light);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 30px;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+        }
+        .estimator-box h3 { color: var(--primary-dark); margin-top: 0; margin-bottom: 10px;}
+        .estimator-controls { display: flex; gap: 15px; flex-wrap: wrap; margin-bottom: 20px;}
+        .estimator-controls select {
+            flex: 1;
+            padding: 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 5px;
+            font-size: 1rem;
+            font-family: 'Open Sans', sans-serif;
+            min-width: 200px;
+        }
+        .estimator-controls button {
+            background-color: var(--primary-dark);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+            font-size: 1rem;
+        }
+        .estimator-controls button:hover { background-color: var(--accent-color); }
+        .estimator-result {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: var(--accent-color);
+            padding-top: 15px;
+            border-top: 1px dashed var(--border-color);
+            display: none;
+            animation: fadeIn 0.4s ease-in-out;
+        }
+        
         /* Business Cards Footer */
         .footer-cards { text-align: center; padding: 50px 20px; background: var(--primary-dark); color: var(--primary-light); }
         .footer-cards p { color: #aaaaaa; margin-bottom: 30px;}
@@ -449,6 +491,29 @@
         
         <!-- Tab 3: Rates & Concierge -->
         <div id="Concierge" class="tab-content">
+
+            <!-- INTERACTIVE FARE ESTIMATOR -->
+            <div class="estimator-box">
+                <h3>🧮 Quick Fare Estimator</h3>
+                <p style="color: var(--text-gray); margin-bottom: 20px; font-size: 0.95rem;">Select your route for an instant flat-rate estimate. For hourly booking or custom trips, please text us directly.</p>
+                <div class="estimator-controls">
+                    <select id="pickup">
+                        <option value="">Select Pickup Location...</option>
+                        <option value="Manhattan">Manhattan</option>
+                        <option value="Brooklyn">Brooklyn</option>
+                        <option value="Queens">Queens</option>
+                        <option value="Bronx">The Bronx</option>
+                    </select>
+                    <select id="dropoff">
+                        <option value="">Select Destination...</option>
+                        <option value="JFK">JFK Airport</option>
+                        <option value="LGA">LaGuardia Airport (LGA)</option>
+                        <option value="EWR">Newark Airport (EWR)</option>
+                    </select>
+                    <button onclick="calculateFare()">Get Estimate</button>
+                </div>
+                <div id="fareResult" class="estimator-result"></div>
+            </div>
             
             <!-- Capped image size for better readability -->
             <img src="Chauffeur opening car door.jpg" style="width:100%; max-height: 350px; object-fit: cover; border-radius:8px; margin-bottom:25px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);" alt="Chauffeur opening car door">
@@ -559,6 +624,98 @@
             setTimeout(showSlides, 5000); // Changes the review every 5 seconds
         }
 
+// Fare Estimator Logic
+        function calculateFare() {
+            const pickup = document.getElementById("pickup").value;
+            const dropoff = document.getElementById("dropoff").value;
+            const resultDiv = document.getElementById("fareResult");
+            
+            if (!pickup || !dropoff) {
+                resultDiv.style.display = "block";
+                resultDiv.style.color = "#d90429";
+                resultDiv.innerHTML = "Please select both a pickup location and a destination.";
+                return;
+            }
+
+            // UPDATE THESE NUMBERS TO MATCH YOUR ACTUAL FLAT RATES
+            const rates = {
+                "Manhattan-JFK": "$85 - $95",
+                "Manhattan-LGA": "$65 - $75",
+                "Manhattan-EWR": "$100 - $120",
+                
+                "Brooklyn-JFK": "$60 - $75",
+                "Brooklyn-LGA": "$65 - $80",
+                "Brooklyn-EWR": "$110 - $130",
+                
+                "Queens-JFK": "$45 - $60",
+                "Queens-LGA": "$40 - $55",
+                "Queens-EWR": "$115 - $135",
+                
+                "Bronx-JFK": "$90 - $110",
+                "Bronx-LGA": "$70 - $85",
+                "Bronx-EWR": "$120 - $140"
+            };
+
+            const route = pickup + "-" + dropoff;
+            const price = rates[route];
+
+            resultDiv.style.display = "block";
+            resultDiv.style.color = "var(--primary-dark)";
+            
+            if (price) {
+                resultDiv.innerHTML = "Estimated Flat Rate: <span style='color: var(--accent-color);'>" + price + "</span> <br><span style='font-size: 0.85rem; color: var(--text-gray); font-weight: normal; margin-top: 8px; display: block;'>*Final price confirmed via text based on exact address and time of day.</span>";
+            } else {
+                resultDiv.innerHTML = "Custom Route: Please text us directly for a quick flat-rate quote!";
+            }
+    // Fare & Toll Estimator Logic
+        function calculateFare() {
+            const pickup = document.getElementById("pickup").value;
+            const dropoff = document.getElementById("dropoff").value;
+            const resultDiv = document.getElementById("fareResult");
+            
+            if (!pickup || !dropoff) {
+                resultDiv.style.display = "block";
+                resultDiv.style.color = "#d90429";
+                resultDiv.innerHTML = "Please select both a pickup location and a destination.";
+                return;
+            }
+
+            // UPDATE THESE NUMBERS TO MATCH YOUR ACTUAL FLAT RATES
+            // Note: 2026 Tolls factor in the $7.46 MTA E-ZPass rate and $0.75 FHV congestion surcharge.
+            const routes = {
+                "Manhattan-JFK": { base: "$85 - $95", tolls: "+ $8.21 (MTA Tunnel + Congestion)" },
+                "Manhattan-LGA": { base: "$65 - $75", tolls: "+ $8.21 (MTA Tunnel + Congestion)" },
+                "Manhattan-EWR": { base: "$100 - $120", tolls: "+ $16.00 (PA Tunnel)" },
+                
+                "Brooklyn-JFK": { base: "$60 - $75", tolls: "+ $0.00 (No Tolls)" },
+                "Brooklyn-LGA": { base: "$65 - $80", tolls: "+ $0.00 (No Tolls)" },
+                "Brooklyn-EWR": { base: "$110 - $130", tolls: "+ $23.46 (Verrazzano + PA Tunnel)" },
+                
+                "Queens-JFK": { base: "$45 - $60", tolls: "+ $0.00 (No Tolls)" },
+                "Queens-LGA": { base: "$40 - $55", tolls: "+ $0.00 (No Tolls)" },
+                "Queens-EWR": { base: "$115 - $135", tolls: "+ $23.46 (MTA + PA Tunnel)" },
+                
+                "Bronx-JFK": { base: "$90 - $110", tolls: "+ $7.46 (Whitestone/Throgs Neck)" },
+                "Bronx-LGA": { base: "$70 - $85", tolls: "+ $7.46 (RFK Bridge)" },
+                "Bronx-EWR": { base: "$120 - $140", tolls: "+ $16.00 (GW Bridge)" }
+            };
+
+            const routeKey = pickup + "-" + dropoff;
+            const estimate = routes[routeKey];
+
+            resultDiv.style.display = "block";
+            resultDiv.style.color = "var(--primary-dark)";
+            
+            if (estimate) {
+                resultDiv.innerHTML = 
+                    "Estimated Base Rate: <span style='color: var(--accent-color);'>" + estimate.base + "</span><br>" +
+                    "Estimated Tolls: <span style='color: var(--text-gray); font-weight: normal;'>" + estimate.tolls + "</span><br>" +
+                    "<span style='font-size: 0.85rem; color: var(--text-gray); font-weight: normal; margin-top: 10px; display: block;'>*Final price confirmed via text based on exact address, live traffic routing, and current E-ZPass rates.</span>";
+            } else {
+                resultDiv.innerHTML = "Custom Route: Please text us directly for a quick flat-rate quote including tolls!";
+            }
+        }    
+        
     </script>
 </body>
 </html>
