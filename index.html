@@ -135,6 +135,51 @@
         .clean-list h4 { margin: 0 0 8px 0; font-size: 1.1rem; letter-spacing: 0.5px; }
         .clean-list p { margin: 0; color: var(--text-gray); font-size: 0.95rem; line-height: 1.6; }
 
+/* Testimonial Auto-Slider */
+        .testimonial-slider {
+            position: relative;
+            max-width: 800px;
+            margin: 50px auto 20px;
+            background: var(--primary-light);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 40px;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            overflow: hidden;
+        }
+        .slide {
+            display: none;
+            animation: fadeSlide 0.6s ease-in-out;
+        }
+        .slide.active {
+            display: block;
+        }
+        .slide p {
+            font-size: 1.1rem;
+            font-style: italic;
+            color: var(--text-gray);
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        .slide h5 {
+            margin: 0;
+            color: var(--primary-dark);
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .slide span {
+            color: #f39c12; /* Premium Gold */
+            font-size: 1.4rem;
+            display: block;
+            margin-bottom: 15px;
+        }
+        @keyframes fadeSlide {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
         /* Action Buttons */
         .btn-main {
             display: inline-block;
@@ -322,6 +367,25 @@
             </div>
         </div>
 
+<!-- VIP TESTIMONIALS SLIDER -->
+            <div class="testimonial-slider">
+                <div class="slide active">
+                    <span>★★★★★</span>
+                    <p>"Absolutely flawless service. The Tesla was immaculate, and the ride from Manhattan to JFK was incredibly smooth. They even monitored my flight which was delayed by an hour. Highly recommend!"</p>
+                    <h5>— Sarah T., Executive Director</h5>
+                </div>
+                <div class="slide">
+                    <span>★★★★★</span>
+                    <p>"We used their concierge service for a VIP client visiting from overseas. They picked up the client's favorite coffee beforehand and provided a whisper-quiet ride for our meeting prep. Truly next-level."</p>
+                    <h5>— James L., Corporate Client</h5>
+                </div>
+                <div class="slide">
+                    <span>★★★★★</span>
+                    <p>"Skip the app roulette. Knowing I have a professional, licensed driver who knows every street in the boroughs gives me total peace of mind. Worth every penny."</p>
+                    <h5>— Marcus W., Frequent Flyer</h5>
+                </div>
+            </div>
+        
         <!-- Tab 2: Premium Services -->
         <div id="Services" class="tab-content">
             <h3 style="margin-bottom: 25px; color: var(--primary-dark);">Premium Transportation</h3>
@@ -475,6 +539,23 @@
                 modal.style.display = "none";
             }
         }
+
+        // Testimonial Auto-Slider Logic
+        let slideIndex = 0;
+        showSlides();
+
+        function showSlides() {
+            let i;
+            let slides = document.getElementsByClassName("slide");
+            for (i = 0; i < slides.length; i++) {
+                slides[i].classList.remove("active");
+            }
+            slideIndex++;
+            if (slideIndex > slides.length) {slideIndex = 1}
+            slides[slideIndex-1].classList.add("active");
+            setTimeout(showSlides, 5000); // Changes the review every 5 seconds
+        }
+
     </script>
 </body>
 </html>
