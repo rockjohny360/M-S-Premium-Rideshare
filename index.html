@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>M&S Premium Rideshare | NYC Luxury Transport</title>
+    <style>
+        /* Modern Fonts & Base Styling */
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&family=Open+Sans:wght@400;600&display=swap');
+        
+        :root {
+            --primary: #000000;
+            --accent: #ff4d4d;
+            --bg-light: #f8f9fa;
+            --text-dark: #333333;
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Open Sans', sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            scroll-behavior: smooth;
+        }
+
+        h1, h2, h3, h4 { font-family: 'Montserrat', sans-serif; }
+
+        /* Sticky Navigation Bar */
+        .navbar {
+            position: sticky;
+            top: 0;
+            background: var(--primary);
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .navbar h2 { margin: 0; font-size: 1.2rem; letter-spacing: 1px; color: white;}
+        .navbar span { color: var(--accent); }
+
+        /* Hero Image Section */
+        .hero {
+            height: 60vh;
+            /* Replace this URL with your custom car image if desired */
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1617788138017-80ad40651399?auto=format&fit=crop&w=1200&q=80') center/cover;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            padding: 20px;
+            border-bottom: 5px solid var(--accent);
+        }
+        .hero h1 { font-size: 3rem; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 2px;}
+        .hero p { font-size: 1.2rem; max-width: 600px; font-weight: 600; }
+
+        /* Interactive Tabs Menu */
+        .tab-container {
+            max-width: 1000px;
+            margin: 40px auto;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            overflow: hidden;
+        }
+        .tab-menu {
+            display: flex;
+            background: #e9ecef;
+            border-bottom: 2px solid var(--primary);
+        }
+        .tab-button {
+            flex: 1;
+            padding: 15px 20px;
+            background: none;
+            border: none;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            cursor: pointer;
+            transition: 0.3s;
+            font-family: 'Montserrat', sans-serif;
+        }
+        .tab-button:hover { background: #dcdcdc; }
+        .tab-button.active {
+            background: var(--primary);
+            color: white;
+            border-top: 4px solid var(--accent);
+        }
+
+        /* Tab Content Area */
+        .tab-content { display: none; padding: 40px 30px; animation: fadeIn 0.5s; }
+        .tab-content.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* Grid Layouts for Content */
+        .driver-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; text-align: center; }
+        .driver-card { padding: 20px; border: 2px solid #eee; border-radius: 10px; transition: transform 0.3s; }
+        .driver-card:hover { transform: translateY(-5px); border-color: var(--primary); box-shadow: 0 10px 20px rgba(0,0,0,0.1);}
+        .driver-card img { width: 150px; height: 150px; border-radius: 50%; border: 3px solid var(--primary); object-fit: cover; }
+        
+        .service-list, .rates-list { list-style: none; padding: 0; }
+        .service-list li, .rates-list li { background: var(--bg-light); margin-bottom: 15px; padding: 15px; border-left: 4px solid var(--accent); border-radius: 4px; }
+        .service-list h4, .rates-list h4 { margin: 0 0 5px 0; color: var(--primary); }
+
+        /* Floating Action Button (Mobile Booking) */
+        .fab {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: var(--accent);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 30px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            text-decoration: none;
+            box-shadow: 0 10px 20px rgba(255, 77, 77, 0.4);
+            transition: transform 0.3s;
+            z-index: 1000;
+        }
+        .fab:hover { transform: scale(1.05); }
+
+        /* Business Cards Footer */
+        .footer-cards { text-align: center; padding: 40px 20px; background: var(--primary); color: white; }
+        .cards-grid { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-top: 20px; }
+        .cards-grid img { max-width: 300px; width: 100%; border-radius: 10px; box-shadow: 0 10px 20px rgba(0,0,0,0.5); }
+        
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2rem; }
+            .tab-menu { flex-direction: column; }
+            .tab-button { border-bottom: 1px solid #ccc; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Top Navigation -->
+    <nav class="navbar">
+        <h2>M&S <span>RIDESHARE</span></h2>
+        <a href="tel:+19394516893" style="color: white; text-decoration: none; font-weight: bold;">📞 Contact Us</a>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero">
+        <h1>Premium NYC Rideshare</h1>
+        <p>Top Quality Ride Services | Luxury | 2023 Tesla Model 3 Fleet</p>
+    </header>
+
+    <!-- Interactive Tabs -->
+    <main class="tab-container">
+        
+        <div class="tab-menu">
+            <button class="tab-button active" onclick="openTab(event, 'Drivers')">Our Drivers</button>
+            <button class="tab-button" onclick="openTab(event, 'Services')">Premium Services</button>
+            <button class="tab-button" onclick="openTab(event, 'Rates')">Rates & Concierge</button>
+        </div>
+
+        <!-- Tab 1: Drivers -->
+        <div id="Drivers" class="tab-content active">
+            <h3 style="text-align: center; margin-bottom: 30px;">Select Your Professional Driver</h3>
+            <div class="driver-grid">
+                <div class="driver-card">
+                    <!-- Update image link here -->
+                    <img src="Islam 2.jpeg" alt="Majharul Islam" onerror="this.src='https://via.placeholder.com/150'">
+                    <h3>Majharul Islam</h3>
+                    <p><b>Licensed NYC TLC Driver</b><br>6+ Years Experience</p>
+                    <a href="tel:+19394516893" style="display:inline-block; margin-top: 10px; padding: 10px 20px; background:var(--primary); color:white; text-decoration:none; border-radius:5px;">📞 (939) 451-6893</a>
+                </div>
+                <div class="driver-card">
+                    <!-- Update image link here -->
+                    <img src="Shipul Islam_photo.jpg" alt="Shipul Islam" onerror="this.src='https://via.placeholder.com/150'">
+                    <h3>Shipul Islam</h3>
+                    <p><b>Licensed NYC TLC Driver</b><br>9+ Years Experience</p>
+                    <a href="tel:+13474854904" style="display:inline-block; margin-top: 10px; padding: 10px 20px; background:var(--primary); color:white; text-decoration:none; border-radius:5px;">📞 (347) 485-4904</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab 2: Services -->
+        <div id="Services" class="tab-content">
+            <h3>Transportation Services</h3>
+            <p>Experience the city in a sleek, climate-controlled, zero-emissions vehicle driven by vetted professionals.</p>
+            <ul class="service-list">
+                <li><h4>✈️ Airport Transfers</h4>Reliable, on-time drop-offs and pick-ups for JFK, LaGuardia, and Newark with real-time flight monitoring.</li>
+                <li><h4>👔 Corporate & Executive Travel</h4>Professional, discreet, and whisper-quiet rides for business professionals.</li>
+                <li><h4>📍 Point-to-Point Rideshare</h4>Fast, direct dispatch. Call or text us directly for quick pickups without app surcharges.</li>
+            </ul>
+        </div>
+
+        <!-- Tab 3: Rates & Concierge -->
+        <div id="Rates" class="tab-content">
+            <h3>Dedicated Hourly Rates</h3>
+            <ul class="rates-list" style="margin-bottom: 30px;">
+                <li><h4>Within New York City</h4>$66 to $70 per hour</li>
+                <li><h4>Outside NYC (Tri-State area)</h4>$100 per hour</li>
+            </ul>
+
+            <h3>VIP Concierge & Side-Quests</h3>
+            <p>We cater to high-end clientele who require more than just a ride. Subject to an additional fee when booked in advance.</p>
+            <ul class="rates-list">
+                <li><h4>🛍️ Personal Shopping & Errands</h4>Need us to pick up groceries, dry cleaning, or retail items before we pick you up? We have you covered.</li>
+                <li><h4>👥 Guest & VIP Transport</h4>We can manage reservations and pick up your family members, VIP guests, or business associates on your behalf.</li>
+                <li><h4>☕ Special Requests</h4>From having a specific coffee waiting in the cupholder to bespoke errands prior to meeting.</li>
+            </ul>
+        </div>
+
+    </main>
+
+    <!-- Footer with Business Cards -->
+    <footer class="footer-cards">
+        <h2>Save Our Digital Business Cards</h2>
+        <p>Press and hold to save directly to your phone's camera roll.</p>
+        <div class="cards-grid">
+            <!-- Replace these links with your actual card images -->
+            <img src="Screenshot of the business card_front .png" alt="Front Card" onerror="this.src='https://via.placeholder.com/350x200?text=Card+Front'">
+            <img src="Screenshot of the business card_Back.png" alt="Back Card" onerror="this.src='https://via.placeholder.com/350x200?text=Card+Back'">
+        </div>
+    </footer>
+
+    <!-- Floating Action Button -->
+    <a href="sms:+19394516893&body=Hi, I would like to book a ride. My name is [Name], picking up at [Location] going to [Destination] on [Date/Time]." class="fab">
+        💬 Text to Book
+    </a>
+
+    <!-- JavaScript for Tabs -->
+    <script>
+        function openTab(evt, tabName) {
+            // Hide all tab content
+            var i, tabcontent, tabbuttons;
+            tabcontent = document.getElementsByClassName("tab-content");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].classList.remove("active");
+            }
+            
+            // Remove 'active' class from all buttons
+            tabbuttons = document.getElementsByClassName("tab-button");
+            for (i = 0; i < tabbuttons.length; i++) {
+                tabbuttons[i].classList.remove("active");
+            }
+            
+            // Show the specific tab and make button active
+            document.getElementById(tabName).classList.add("active");
+            evt.currentTarget.classList.add("active");
+        }
+    </script>
+</body>
+</html>
