@@ -167,6 +167,34 @@
             box-sizing: border-box;
         }
 
+        /* Fleet / Vehicle Showcase Card */
+        .fleet-card {
+            display: flex;
+            flex-direction: column;
+            background: var(--primary-light);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            overflow: hidden;
+            margin: 40px 0;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+        }
+        .fleet-image {
+            min-height: 250px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #e0e0e0;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .fleet-details { padding: 30px; }
+        .fleet-details h4 { margin-top: 0; color: var(--accent-color); font-size: 1.4rem; letter-spacing: 1px;}
+        .fleet-details ul { margin-top: 15px; padding-left: 20px; color: var(--text-gray); line-height: 1.8;}
+        
+        @media (min-width: 768px) {
+            .fleet-card { flex-direction: row; }
+            .fleet-image { width: 50%; border-bottom: none; border-right: 1px solid var(--border-color); }
+            .fleet-details { width: 50%; }
+        }
         /* Business Cards Footer */
         .footer-cards { text-align: center; padding: 50px 20px; background: var(--primary-dark); color: var(--primary-light); }
         .footer-cards p { color: #aaaaaa; margin-bottom: 30px;}
@@ -294,7 +322,31 @@
                     <p>Fast, direct dispatch. Call or text us directly for quick pickups without the app surcharges.</p>
                 </li>
             </ul>
-
+<!-- OUR FLEET SHOWCASE -->
+            <h3 style="margin-top: 50px; margin-bottom: 25px; color: var(--primary-dark);">Our Premium Fleet</h3>
+            <div class="fleet-card">
+                
+                <!-- AI IMAGE PLACEHOLDER -->
+                <!-- AI GENERATOR PROMPT: "A sleek black 2023 Tesla Model 3 parked on a cobblestone street in New York City at dusk, city lights reflecting off the glossy paint, luxury car commercial photography, photorealistic." -->
+                <!-- Once generated, replace the div below with: <img src="your_tesla_image.jpg" style="width:100%; height:100%; object-fit:cover;" alt="2023 Tesla Model 3"> -->
+                <div class="fleet-image image-placeholder" style="margin: 0; border: none; border-radius: 0;">
+                    [AI Image Placeholder: Sleek 2023 Tesla Model 3]
+                </div>
+                
+                <div class="fleet-details">
+                    <h4>2023 Tesla Model 3</h4>
+                    <p style="color: var(--text-gray); font-size: 0.95rem; line-height: 1.6;">
+                        Experience the ultimate in modern luxury and sustainability. Our flagship vehicle offers a whisper-quiet, zero-emissions ride through the city without compromising on high-end comfort.
+                    </p>
+                    <ul>
+                        <li><strong>Panoramic Glass Roof:</strong> Enjoy expansive views of the NYC skyline.</li>
+                        <li><strong>Premium Interior:</strong> Immaculate, climate-controlled vegan leather seating.</li>
+                        <li><strong>Advanced Safety:</strong> State-of-the-art collision prevention technology.</li>
+                        <li><strong>TLC-Plated:</strong> Fully inspected, licensed, and insured for commercial New York City transport.</li>
+                    </ul>
+                </div>
+            </div>
+            
             <h3 style="margin-top: 40px; margin-bottom: 25px; color: var(--primary-dark);">In-Vehicle Amenities</h3>
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px;">
                 <div style="padding: 15px; border: 1px solid var(--border-color); border-radius: 4px; text-align: center; font-weight: 600;">Zero-Emissions Quiet Ride</div>
