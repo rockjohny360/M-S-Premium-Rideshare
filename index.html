@@ -148,7 +148,34 @@
             transition: background 0.3s;
         }
         .btn-main:hover { background-color: var(--accent-hover); }
-
+/* Sustainability Badge */
+        .eco-badge {
+            background: linear-gradient(135deg, #f1f8f5 0%, #ffffff 100%);
+            border: 1px solid #d1e7dd;
+            border-left: 5px solid #2e7d32;
+            padding: 35px;
+            border-radius: 8px;
+            margin: 40px 0;
+            box-shadow: 0 10px 25px rgba(46, 125, 50, 0.05);
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        .eco-badge h3 {
+            color: #2e7d32;
+            margin: 0;
+            font-size: 1.4rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .eco-badge p {
+            color: var(--text-gray);
+            line-height: 1.7;
+            margin: 0;
+            font-size: 0.95rem;
+        }
+        
         /* Fleet / Vehicle Showcase Card (FIXED LAYOUT) */
         .fleet-card {
             display: flex;
@@ -345,6 +372,14 @@
             </div>
         </div>
 
+    <!-- SUSTAINABILITY BADGE -->
+            <div class="eco-badge">
+                <h3>🌱 Our Commitment to a Greener NYC</h3>
+                <p>
+                    Luxury shouldn't come at the expense of the environment. Driven by a background with the Leaders in Environmental Action Fellowship (LEAF) and ongoing support for local conservation efforts across New York City, M&S Premium Rideshare operates a 100% zero-emissions primary fleet. By choosing our Tesla Model 3, you are actively reducing the urban carbon footprint and promoting cleaner air across the five boroughs, all without compromising on premium comfort.
+                </p>
+            </div>
+        
         <!-- Tab 3: Rates & Concierge -->
         <div id="Concierge" class="tab-content">
             
