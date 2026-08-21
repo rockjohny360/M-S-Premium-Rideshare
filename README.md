@@ -64,7 +64,7 @@ We cater to high-end clientele who require more than just a ride. To make your d
 If booked in advance, we can assist with:
 *   **Personal Shopping & Errands:** Need us to pick up groceries, dry cleaning, or retail items before we pick you up? We have you covered.
 *   **Guest & VIP Transport:** We can manage reservations and pick up your family members, VIP guests, or business associates on your behalf.
-*   **Special Requests:** If you need a specific coffee waiting for you in the cupholder or another bespoke errand completed prior to meeting, just let us know.
+*   **Special Requests:** If you need a specific coffee waiting for you in the Café or another bespoke errand completed prior to meeting, just let us know.
 
 *(Note: These exclusive concierge services require advance booking and are subject to an additional fee based on the request.)*
 
@@ -74,8 +74,8 @@ If booked in advance, we can assist with:
 
 Your journey should be a place to recharge. Our vehicles are detailed daily and come equipped with:
 
-*   **Zero-Emissions Quiet Ride** (Tesla/EV Fleet)  
-*   **Multi-device Charging Cables** (Lightning, USB-C)  
+*   **Zero-Emissions Quiet Ride**  
+*   **Multi-device Charging Cables**   
 *   **Complimentary Bottled Water & Mints**  
 *   **Passenger-Controlled Climate & Music**  
 
