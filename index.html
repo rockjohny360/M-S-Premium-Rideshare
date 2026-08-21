@@ -11,7 +11,7 @@
         :root {
             --primary-dark: #111111;
             --primary-light: #ffffff;
-            --accent-color: #d90429; /* Vibrant Crimson Red for clickable items */
+            --accent-color: #d90429;
             --accent-hover: #ef233c;
             --text-gray: #555555;
             --border-color: #e0e0e0;
@@ -54,7 +54,7 @@
         }
         .nav-btn:hover { background-color: var(--accent-hover); }
 
-        /* Hero Image Section (Using Your Original Image) */
+        /* Hero Image Section */
         .hero {
             height: 60vh;
             background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.4)), url('Logo background.jpg') center/cover;
@@ -124,7 +124,7 @@
         .driver-card h3 { margin: 0 0 5px 0; font-size: 1.5rem; }
         .driver-card p { color: var(--text-gray); font-size: 0.95rem; line-height: 1.5; margin-bottom: 20px;}
         
-        /* Clean List Styling (Replaces Emojis) */
+        /* Clean List Styling */
         .clean-list { list-style: none; padding: 0; margin: 0; }
         .clean-list li { 
             padding: 20px 25px; margin-bottom: 15px; 
@@ -149,25 +149,7 @@
         }
         .btn-main:hover { background-color: var(--accent-hover); }
 
-        /* AI Image Placeholder Boxes */
-        .image-placeholder {
-            width: 100%;
-            height: 250px;
-            background-color: #e0e0e0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 8px;
-            margin-bottom: 25px;
-            border: 2px dashed #999;
-            color: #666;
-            font-style: italic;
-            text-align: center;
-            padding: 20px;
-            box-sizing: border-box;
-        }
-
-        /* Fleet / Vehicle Showcase Card */
+        /* Fleet / Vehicle Showcase Card (FIXED LAYOUT) */
         .fleet-card {
             display: flex;
             flex-direction: column;
@@ -176,25 +158,33 @@
             border-radius: 8px;
             overflow: hidden;
             margin: 40px 0;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
         }
         .fleet-image {
-            min-height: 250px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            width: 100%;
+            height: 250px;
             background-color: #e0e0e0;
-            border-bottom: 1px solid var(--border-color);
         }
-        .fleet-details { padding: 30px; }
+        .fleet-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .fleet-details { 
+            padding: 30px; 
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
         .fleet-details h4 { margin-top: 0; color: var(--accent-color); font-size: 1.4rem; letter-spacing: 1px;}
         .fleet-details ul { margin-top: 15px; padding-left: 20px; color: var(--text-gray); line-height: 1.8;}
         
         @media (min-width: 768px) {
             .fleet-card { flex-direction: row; }
-            .fleet-image { width: 50%; border-bottom: none; border-right: 1px solid var(--border-color); }
+            .fleet-image { width: 50%; height: auto; min-height: 350px; border-right: 1px solid var(--border-color); }
             .fleet-details { width: 50%; }
         }
+
         /* Business Cards Footer */
         .footer-cards { text-align: center; padding: 50px 20px; background: var(--primary-dark); color: var(--primary-light); }
         .footer-cards p { color: #aaaaaa; margin-bottom: 30px;}
@@ -222,7 +212,7 @@
         }
         .fab:hover { transform: scale(1.05); background-color: var(--accent-hover); }
 
-        /* Contact Modal (Pop-up for calling both drivers) */
+        /* Contact Modal */
         .modal {
             display: none; position: fixed; z-index: 2000; left: 0; top: 0;
             width: 100%; height: 100%; background-color: rgba(0,0,0,0.8);
@@ -322,12 +312,15 @@
                     <p>Fast, direct dispatch. Call or text us directly for quick pickups without the app surcharges.</p>
                 </li>
             </ul>
-<!-- OUR FLEET SHOWCASE -->
+
+            <!-- OUR FLEET SHOWCASE (RESTORED LAYOUT) -->
             <h3 style="margin-top: 50px; margin-bottom: 25px; color: var(--primary-dark);">Our Premium Fleet</h3>
             <div class="fleet-card">
                 
-                <!-- CORRECTED: Using your exact file name in the src attribute -->
-                <img src="Tesla model 3_two.jpg" style="width:100%; height:100%; object-fit:cover;" alt="2023 Tesla Model 3">
+                <!-- The fleet-image wrapper keeps the image perfectly sized on the left side -->
+                <div class="fleet-image">
+                    <img src="Tesla model 3_two.jpg" alt="2023 Tesla Model 3">
+                </div>
                 
                 <div class="fleet-details">
                     <h4>2023 Tesla Model 3</h4>
@@ -355,9 +348,8 @@
         <!-- Tab 3: Rates & Concierge -->
         <div id="Concierge" class="tab-content">
             
-           <!-- AI IMAGE PLACEHOLDER 1 -->
-            <!-- CORRECTED: Using the proper <img> tag to display the image file -->
-            <img src="Chauffeur opening car door.jpg" style="width:100%; border-radius:8px; margin-bottom:25px;" alt="Chauffeur opening car door">
+            <!-- Capped image size for better readability -->
+            <img src="Chauffeur opening car door.jpg" style="width:100%; max-height: 350px; object-fit: cover; border-radius:8px; margin-bottom:25px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);" alt="Chauffeur opening car door">
 
             <h3 style="color: var(--primary-dark);">Dedicated Hourly Rates</h3>
             <p style="color: var(--text-gray); margin-bottom: 20px;">Need a driver on standby? We offer dedicated hourly rates for running errands, multi-stop meetings, or VIP city tours.</p>
@@ -366,9 +358,8 @@
                 <li><h4>Outside New York City (Tri-State area)</h4><p>$100 per hour</p></li>
             </ul>
 
-           <!-- AI IMAGE PLACEHOLDER 2 -->
-            <!-- CORRECTED: Using the proper <img> tag to display the image file -->
-            <img src="Luxury shopping bags and other products.jpg" style="width:100%; border-radius:8px; margin-bottom:25px;" alt="VIP Concierge Services">
+            <!-- Capped image size for better readability -->
+            <img src="Luxury shopping bags and other products.jpg" style="width:100%; max-height: 350px; object-fit: cover; border-radius:8px; margin-bottom:25px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);" alt="VIP Concierge Services">
 
             <h3 style="color: var(--primary-dark);">VIP Concierge & Additional Services</h3>
             <p style="color: var(--text-gray); margin-bottom: 20px;">We cater to high-end clientele who require more than just a ride. To make your day as seamless as possible, we offer customized "side-quest" services alongside your transportation. If booked in advance, we can assist with:</p>
@@ -451,4 +442,4 @@
         }
     </script>
 </body>
-</html>   
+</html>
