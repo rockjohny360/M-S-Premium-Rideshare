@@ -135,7 +135,7 @@
         .clean-list h4 { margin: 0 0 8px 0; font-size: 1.1rem; letter-spacing: 0.5px; }
         .clean-list p { margin: 0; color: var(--text-gray); font-size: 0.95rem; line-height: 1.6; }
 
-/* Testimonial Auto-Slider */
+        /* Testimonial Auto-Slider */
         .testimonial-slider {
             position: relative;
             max-width: 800px;
@@ -193,7 +193,8 @@
             transition: background 0.3s;
         }
         .btn-main:hover { background-color: var(--accent-hover); }
-/* Sustainability Badge */
+
+        /* Sustainability Badge */
         .eco-badge {
             background: linear-gradient(135deg, #f1f8f5 0%, #ffffff 100%);
             border: 1px solid #d1e7dd;
@@ -257,7 +258,7 @@
             .fleet-details { width: 50%; }
         }
 
-/* Interactive Fare Estimator */
+        /* Interactive Fare Estimator */
         .estimator-box {
             background: var(--primary-light);
             border: 1px solid var(--border-color);
@@ -382,7 +383,7 @@
             <button class="tab-button" onclick="openTab(event, 'Concierge')">Rates & Concierge</button>
         </div>
 
-<!-- Tab 1: Drivers -->
+        <!-- Tab 1: Drivers -->
         <div id="Drivers" class="tab-content active">
             
             <div style="text-align: center; margin-bottom: 40px;">
@@ -456,11 +457,10 @@
                 </li>
             </ul>
 
-            <!-- OUR FLEET SHOWCASE (RESTORED LAYOUT) -->
+            <!-- OUR FLEET SHOWCASE -->
             <h3 style="margin-top: 50px; margin-bottom: 25px; color: var(--primary-dark);">Our Premium Fleet</h3>
             <div class="fleet-card">
                 
-                <!-- The fleet-image wrapper keeps the image perfectly sized on the left side -->
                 <div class="fleet-image">
                     <img src="Tesla model 3_two.jpg" alt="2023 Tesla Model 3">
                 </div>
@@ -487,7 +487,6 @@
                 <div style="padding: 15px; border: 1px solid var(--border-color); border-radius: 4px; text-align: center; font-weight: 600;">Passenger-Controlled Climate</div>
             </div>
         </div>
-
         
         <!-- Tab 3: Rates & Concierge -->
         <div id="Concierge" class="tab-content">
@@ -515,7 +514,6 @@
                 <div id="fareResult" class="estimator-result"></div>
             </div>
             
-            <!-- Capped image size for better readability -->
             <img src="Chauffeur opening car door.jpg" style="width:100%; max-height: 350px; object-fit: cover; border-radius:8px; margin-bottom:25px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);" alt="Chauffeur opening car door">
 
             <h3 style="color: var(--primary-dark);">Dedicated Hourly Rates</h3>
@@ -525,7 +523,6 @@
                 <li><h4>Outside New York City (Tri-State area)</h4><p>$100 per hour</p></li>
             </ul>
 
-            <!-- Capped image size for better readability -->
             <img src="Luxury shopping bags and other products.jpg" style="width:100%; max-height: 350px; object-fit: cover; border-radius:8px; margin-bottom:25px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);" alt="VIP Concierge Services">
 
             <h3 style="color: var(--primary-dark);">VIP Concierge & Additional Services</h3>
@@ -564,14 +561,14 @@
         Book Now
     </button>
 
-    <!-- Contact Modal (Hidden by default) -->
+    <!-- Contact Modal -->
     <div id="contactModal" class="modal">
         <div class="modal-content">
             <span class="close-btn" onclick="document.getElementById('contactModal').style.display='none'">&times;</span>
             <h2 style="color: var(--primary-dark); font-size: 1.4rem; margin-bottom: 20px;">Select Your Driver</h2>
             <p style="color: var(--text-gray); margin-bottom: 25px; font-size: 0.95rem;">Send a text or call us directly with your Pickup Location, Destination, and Time for an instant quote.</p>
             
-<a href="sms:+19394516893?&body=Hi, I would like to book a ride. Name: [Your Name], Pickup: [Location], Dropoff: [Destination], Date/Time: [Time]" class="contact-btn">
+            <a href="sms:+19394516893?&body=Hi, I would like to book a ride. Name: [Your Name], Pickup: [Location], Dropoff: [Destination], Date/Time: [Time]" class="contact-btn">
                 Contact Majharul
                 <span>(939) 451-6893</span>
             </a>
@@ -583,7 +580,7 @@
         </div>
     </div>
 
-    <!-- JavaScript for Tabs & Modal -->
+    <!-- JavaScript for Tabs, Modal & Slider -->
     <script>
         // Tab functionality
         function openTab(evt, tabName) {
@@ -624,50 +621,7 @@
             setTimeout(showSlides, 5000); // Changes the review every 5 seconds
         }
 
-// Fare Estimator Logic
-        function calculateFare() {
-            const pickup = document.getElementById("pickup").value;
-            const dropoff = document.getElementById("dropoff").value;
-            const resultDiv = document.getElementById("fareResult");
-            
-            if (!pickup || !dropoff) {
-                resultDiv.style.display = "block";
-                resultDiv.style.color = "#d90429";
-                resultDiv.innerHTML = "Please select both a pickup location and a destination.";
-                return;
-            }
-
-            // UPDATE THESE NUMBERS TO MATCH YOUR ACTUAL FLAT RATES
-            const rates = {
-                "Manhattan-JFK": "$85 - $95",
-                "Manhattan-LGA": "$65 - $75",
-                "Manhattan-EWR": "$100 - $120",
-                
-                "Brooklyn-JFK": "$60 - $75",
-                "Brooklyn-LGA": "$65 - $80",
-                "Brooklyn-EWR": "$110 - $130",
-                
-                "Queens-JFK": "$45 - $60",
-                "Queens-LGA": "$40 - $55",
-                "Queens-EWR": "$115 - $135",
-                
-                "Bronx-JFK": "$90 - $110",
-                "Bronx-LGA": "$70 - $85",
-                "Bronx-EWR": "$120 - $140"
-            };
-
-            const route = pickup + "-" + dropoff;
-            const price = rates[route];
-
-            resultDiv.style.display = "block";
-            resultDiv.style.color = "var(--primary-dark)";
-            
-            if (price) {
-                resultDiv.innerHTML = "Estimated Flat Rate: <span style='color: var(--accent-color);'>" + price + "</span> <br><span style='font-size: 0.85rem; color: var(--text-gray); font-weight: normal; margin-top: 8px; display: block;'>*Final price confirmed via text based on exact address and time of day.</span>";
-            } else {
-                resultDiv.innerHTML = "Custom Route: Please text us directly for a quick flat-rate quote!";
-            }
-    // Fare & Toll Estimator Logic
+        // Fare & Toll Estimator Logic
         function calculateFare() {
             const pickup = document.getElementById("pickup").value;
             const dropoff = document.getElementById("dropoff").value;
