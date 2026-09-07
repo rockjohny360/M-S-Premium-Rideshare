@@ -70,6 +70,21 @@
         .hero h1 { font-size: 3.5rem; margin-bottom: 10px; letter-spacing: 3px; }
         .hero p { font-size: 1.2rem; max-width: 700px; font-weight: 600; letter-spacing: 1px; color: #f0f0f0; }
 
+        /* Glowing Pulse for Greeting */
+        .glowing-greeting {
+            font-size: 1.3rem;
+            margin-bottom: 5px;
+            color: var(--accent-color);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            animation: textGlow 2s infinite ease-in-out;
+        }
+        @keyframes textGlow {
+            0% { text-shadow: 0 0 5px rgba(217, 4, 41, 0.4); }
+            50% { text-shadow: 0 0 20px rgba(217, 4, 41, 0.9), 0 0 30px rgba(217, 4, 41, 0.6); }
+            100% { text-shadow: 0 0 5px rgba(217, 4, 41, 0.4); }
+        }
+
         /* Interactive Tabs Menu */
         .tab-container {
             max-width: 1100px;
@@ -412,7 +427,8 @@
 
     <!-- Hero Section -->
     <header class="hero">
-        <h3 id="timeGreeting" style="font-size: 1.2rem; margin-bottom: 5px; color: var(--accent-color); letter-spacing: 2px;">Welcome</h3>
+        <!-- Glowing dynamic greeting -->
+        <h3 id="timeGreeting" class="glowing-greeting">Welcome</h3>
         <h1>M&S Premium Rideshare</h1>
         <p>TOP QUALITY RIDE SERVICES | LUXURY | NYC & TRI-STATE</p>
     </header>
@@ -443,9 +459,9 @@
                     <h3>Majharul Islam</h3>
                     <p style="margin-bottom: 10px;"><b>Licensed NYC TLC Driver</b><br>6+ Years Experience</p>
                     
-                    <!-- MAJHARUL'S STATUS BADGE -->
-                    <div class="status-badge status-online">
-                        <span class="dot dot-online"></span> Available
+                    <!-- MAJHARUL'S STATUS BADGE (UPDATED TO OFFLINE) -->
+                    <div class="status-badge status-offline">
+                        <span class="dot dot-offline"></span> Away (Offline)
                     </div><br>
 
                     <a href="tel:+19394516893" class="btn-main">Text/Call: (939) 451-6893</a>
@@ -605,10 +621,10 @@
     <!-- Footer with Business Cards -->
     <footer class="footer-cards">
         <h2 style="letter-spacing: 1px;">Save Our Contact Info</h2>
-        <p style="max-width: 600px; margin: 0 auto 20px;">Never lose our numbers. Tap the button below to instantly save M&S Premium Rideshare directly to your phone's address book.</p>
+        <p style="max-width: 600px; margin: 0 auto 20px;">Never lose our numbers. Tap the button below to instantly save NYC Ride directly to your phone's address book.</p>
         
-        <!-- The vCard Download Button -->
-        <a href="contact.vcf" download class="btn-main" style="margin-bottom: 40px; display: inline-block; background-color: var(--primary-light); color: var(--primary-dark); border: 2px solid var(--accent-color);">
+        <!-- The vCard Download Button (JavaScript Powered) -->
+        <a id="save-contact-btn" href="#" class="btn-main" style="margin-bottom: 40px; display: inline-block; background-color: var(--primary-light); color: var(--primary-dark); border: 2px solid var(--accent-color);">
             📥 Add to Contacts
         </a>
 
@@ -643,7 +659,7 @@
         </div>
     </div>
 
-    <!-- JavaScript for Tabs, Modal, Slider & Greeting -->
+    <!-- JavaScript for Tabs, Modal, Slider, Greeting & vCard -->
     <script>
         // Dynamic Time-of-Day Greeting
         function setGreeting() {
@@ -660,7 +676,7 @@
             
             document.getElementById("timeGreeting").innerText = greeting;
         }
-        setGreeting(); // Run it immediately
+        setGreeting();
 
         // Tab functionality
         function openTab(evt, tabName) {
@@ -714,7 +730,6 @@
                 return;
             }
 
-            // UPDATE THESE NUMBERS TO MATCH YOUR ACTUAL FLAT RATES
             const routes = {
                 "Manhattan-JFK": { base: "$85 - $95", tolls: "+ $8.21 (MTA Tunnel + Congestion)" },
                 "Manhattan-LGA": { base: "$65 - $75", tolls: "+ $8.21 (MTA Tunnel + Congestion)" },
@@ -747,7 +762,16 @@
             } else {
                 resultDiv.innerHTML = "Custom Route: Please text us directly for a quick flat-rate quote including tolls!";
             }
-        }    
+        }
+        
+        // 1-Tap Save Contact Logic (Updated to "NYC Ride")
+        const contactBtn = document.getElementById("save-contact-btn");
+        if (contactBtn) {
+            const vcard = "BEGIN:VCARD\nVERSION:3.0\nN:Ride;NYC;;;\nFN:NYC Ride\nORG:NYC Premium Rideshare\nTEL;TYPE=WORK,VOICE:(939) 451-6893\nTEL;TYPE=WORK,VOICE:(347) 485-4904\nURL:https://rockjohny360.github.io/M-S-Premium-Rideshare/\nNOTE:Majharul (939) 451-6893 | Shipul (347) 485-4904\nEND:VCARD";
+            
+            contactBtn.href = "data:text/vcard;charset=utf-8," + encodeURIComponent(vcard);
+            contactBtn.download = "NYC_Ride.vcf";
+        }
     </script>
 </body>
 </html>
