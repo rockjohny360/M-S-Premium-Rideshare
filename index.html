@@ -427,7 +427,6 @@
 
     <!-- Hero Section -->
     <header class="hero">
-        <!-- Glowing dynamic greeting -->
         <h3 id="timeGreeting" class="glowing-greeting">Welcome</h3>
         <h1>M&S Premium Rideshare</h1>
         <p>TOP QUALITY RIDE SERVICES | LUXURY | NYC & TRI-STATE</p>
@@ -459,7 +458,7 @@
                     <h3>Majharul Islam</h3>
                     <p style="margin-bottom: 10px;"><b>Licensed NYC TLC Driver</b><br>6+ Years Experience</p>
                     
-                    <!-- MAJHARUL'S STATUS BADGE (UPDATED TO OFFLINE) -->
+                    <!-- MAJHARUL'S STATUS BADGE -->
                     <div class="status-badge status-offline">
                         <span class="dot dot-offline"></span> Away (Offline)
                     </div><br>
@@ -482,7 +481,7 @@
                 </div>
             </div>
 
-            <!-- VIP TESTIMONIALS SLIDER (Inside Tab 1) -->
+            <!-- VIP TESTIMONIALS SLIDER -->
             <div class="testimonial-slider">
                 <div class="slide active">
                     <span>★★★★★</span>
@@ -501,7 +500,7 @@
                 </div>
             </div>
 
-            <!-- SUSTAINABILITY BADGE (Inside Tab 1) -->
+            <!-- SUSTAINABILITY BADGE -->
             <div class="eco-badge">
                 <h3>🌱 Our Commitment to a Greener NYC</h3>
                 <p>
@@ -563,7 +562,7 @@
         <!-- Tab 3: Rates & Concierge -->
         <div id="Concierge" class="tab-content">
 
-            <!-- INTERACTIVE FARE ESTIMATOR -->
+            <!-- INTERACTIVE FARE ESTIMATOR (EXPANDED LOCATIONS) -->
             <div class="estimator-box">
                 <h3>🧮 Quick Fare Estimator</h3>
                 <p style="color: var(--text-gray); margin-bottom: 20px; font-size: 0.95rem;">Select your route for an instant flat-rate estimate. For hourly booking or custom trips, please text us directly.</p>
@@ -574,12 +573,19 @@
                         <option value="Brooklyn">Brooklyn</option>
                         <option value="Queens">Queens</option>
                         <option value="Bronx">The Bronx</option>
+                        <option value="Westchester">Westchester County</option>
+                        <option value="LongIsland">Long Island (Nassau/Suffolk)</option>
                     </select>
                     <select id="dropoff">
                         <option value="">Select Destination...</option>
                         <option value="JFK">JFK Airport</option>
                         <option value="LGA">LaGuardia Airport (LGA)</option>
-                        <option value="EWR">Newark Airport (EWR)</option>
+                        <option value="EWR">Newark Liberty (EWR)</option>
+                        <option value="TEB">Teterboro Airport (TEB)</option>
+                        <option value="Manhattan">Manhattan</option>
+                        <option value="Brooklyn">Brooklyn</option>
+                        <option value="Queens">Queens</option>
+                        <option value="JerseyCity">Jersey City / Hoboken</option>
                     </select>
                     <button onclick="calculateFare()">Get Estimate</button>
                 </div>
@@ -623,7 +629,7 @@
         <h2 style="letter-spacing: 1px;">Save Our Contact Info</h2>
         <p style="max-width: 600px; margin: 0 auto 20px;">Never lose our numbers. Tap the button below to instantly save NYC Ride directly to your phone's address book.</p>
         
-        <!-- The vCard Download Button (JavaScript Powered) -->
+        <!-- The vCard Download Button -->
         <a id="save-contact-btn" href="#" class="btn-main" style="margin-bottom: 40px; display: inline-block; background-color: var(--primary-light); color: var(--primary-dark); border: 2px solid var(--accent-color);">
             📥 Add to Contacts
         </a>
@@ -659,7 +665,7 @@
         </div>
     </div>
 
-    <!-- JavaScript for Tabs, Modal, Slider, Greeting & vCard -->
+    <!-- JavaScript -->
     <script>
         // Dynamic Time-of-Day Greeting
         function setGreeting() {
@@ -714,10 +720,10 @@
             slideIndex++;
             if (slideIndex > slides.length) {slideIndex = 1}
             slides[slideIndex-1].classList.add("active");
-            setTimeout(showSlides, 5000); // Changes the review every 5 seconds
+            setTimeout(showSlides, 5000);
         }
 
-        // Fare & Toll Estimator Logic
+        // Expanded Fare & Toll Estimator Logic
         function calculateFare() {
             const pickup = document.getElementById("pickup").value;
             const dropoff = document.getElementById("dropoff").value;
@@ -731,21 +737,39 @@
             }
 
             const routes = {
+                // Manhattan Routes
                 "Manhattan-JFK": { base: "$85 - $95", tolls: "+ $8.21 (MTA Tunnel + Congestion)" },
                 "Manhattan-LGA": { base: "$65 - $75", tolls: "+ $8.21 (MTA Tunnel + Congestion)" },
                 "Manhattan-EWR": { base: "$100 - $120", tolls: "+ $16.00 (PA Tunnel)" },
-                
+                "Manhattan-TEB": { base: "$110 - $130", tolls: "+ $16.00 (GW Bridge / Lincoln Tunnel)" },
+                "Manhattan-JerseyCity": { base: "$55 - $65", tolls: "+ $16.00 (Holland/Lincoln Tunnel)" },
+
+                // Brooklyn Routes
                 "Brooklyn-JFK": { base: "$60 - $75", tolls: "+ $0.00 (No Tolls)" },
                 "Brooklyn-LGA": { base: "$65 - $80", tolls: "+ $0.00 (No Tolls)" },
                 "Brooklyn-EWR": { base: "$110 - $130", tolls: "+ $23.46 (Verrazzano + PA Tunnel)" },
-                
+                "Brooklyn-Manhattan": { base: "$50 - $65", tolls: "+ $7.46 (MTA Bridge/Tunnel)" },
+
+                // Queens Routes
                 "Queens-JFK": { base: "$45 - $60", tolls: "+ $0.00 (No Tolls)" },
                 "Queens-LGA": { base: "$40 - $55", tolls: "+ $0.00 (No Tolls)" },
                 "Queens-EWR": { base: "$115 - $135", tolls: "+ $23.46 (MTA + PA Tunnel)" },
-                
+                "Queens-Manhattan": { base: "$55 - $70", tolls: "+ $8.21 (Midtown Tunnel/Bridge)" },
+
+                // Bronx Routes
                 "Bronx-JFK": { base: "$90 - $110", tolls: "+ $7.46 (Whitestone/Throgs Neck)" },
                 "Bronx-LGA": { base: "$70 - $85", tolls: "+ $7.46 (RFK Bridge)" },
-                "Bronx-EWR": { base: "$120 - $140", tolls: "+ $16.00 (GW Bridge)" }
+                "Bronx-EWR": { base: "$120 - $140", tolls: "+ $16.00 (GW Bridge)" },
+                "Bronx-Manhattan": { base: "$55 - $70", tolls: "+ $0.00 (No Tolls via Harlem River)" },
+
+                // Westchester & Long Island Regional Routes
+                "Westchester-JFK": { base: "$130 - $150", tolls: "+ $10.00 (Hutchinson / Cross Bronx)" },
+                "Westchester-LGA": { base: "$110 - $130", tolls: "+ $7.46 (Bronx-Whitestone Bridge)" },
+                "Westchester-Manhattan": { base: "$90 - $110", tolls: "+ $0.00 (Direct via Major Deegan)" },
+                
+                "LongIsland-JFK": { base: "$70 - $90", tolls: "+ $0.00 (Local Arterials)" },
+                "LongIsland-LGA": { base: "$80 - $100", tolls: "+ $0.00 (Grand Central Pkwy)" },
+                "LongIsland-Manhattan": { base: "$110 - $130", tolls: "+ $8.21 (Long Island Expressway)" }
             };
 
             const routeKey = pickup + "-" + dropoff;
@@ -764,7 +788,7 @@
             }
         }
         
-        // 1-Tap Save Contact Logic (Updated to "NYC Ride")
+        // 1-Tap Save Contact Logic
         const contactBtn = document.getElementById("save-contact-btn");
         if (contactBtn) {
             const vcard = "BEGIN:VCARD\nVERSION:3.0\nN:Ride;NYC;;;\nFN:NYC Ride\nORG:NYC Premium Rideshare\nTEL;TYPE=WORK,VOICE:(939) 451-6893\nTEL;TYPE=WORK,VOICE:(347) 485-4904\nURL:https://rockjohny360.github.io/M-S-Premium-Rideshare/\nNOTE:Majharul (939) 451-6893 | Shipul (347) 485-4904\nEND:VCARD";
