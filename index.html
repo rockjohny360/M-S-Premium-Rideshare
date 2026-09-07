@@ -114,6 +114,16 @@
         @keyframes fadeIn { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
 
         /* Driver Grid */
+        .driver-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; }
+        .driver-card { 
+            text-align: center; padding: 30px; border: 1px solid var(--border-color); 
+            border-radius: 8px; transition: transform 0.3s, box-shadow 0.3s; 
+        }
+        .driver-card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); border-color: var(--accent-color); }
+        .driver-card img { width: 160px; height: 160px; border-radius: 50%; border: 4px solid var(--primary-dark); object-fit: cover; margin-bottom: 15px;}
+        .driver-card h3 { margin: 0 0 5px 0; font-size: 1.5rem; }
+        .driver-card p { color: var(--text-gray); font-size: 0.95rem; line-height: 1.5; margin-bottom: 20px;}
+        
         /* Driver Status Badges */
         .status-badge {
             display: inline-flex;
@@ -155,16 +165,7 @@
             70% { box-shadow: 0 0 0 6px rgba(30, 142, 62, 0); }
             100% { box-shadow: 0 0 0 0 rgba(30, 142, 62, 0); }
         }
-        .driver-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; }
-        .driver-card { 
-            text-align: center; padding: 30px; border: 1px solid var(--border-color); 
-            border-radius: 8px; transition: transform 0.3s, box-shadow 0.3s; 
-        }
-        .driver-card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); border-color: var(--accent-color); }
-        .driver-card img { width: 160px; height: 160px; border-radius: 50%; border: 4px solid var(--primary-dark); object-fit: cover; margin-bottom: 15px;}
-        .driver-card h3 { margin: 0 0 5px 0; font-size: 1.5rem; }
-        .driver-card p { color: var(--text-gray); font-size: 0.95rem; line-height: 1.5; margin-bottom: 20px;}
-        
+
         /* Clean List Styling */
         .clean-list { list-style: none; padding: 0; margin: 0; }
         .clean-list li { 
@@ -263,7 +264,7 @@
             font-size: 0.95rem;
         }
         
-        /* Fleet / Vehicle Showcase Card (FIXED LAYOUT) */
+        /* Fleet / Vehicle Showcase Card */
         .fleet-card {
             display: flex;
             flex-direction: column;
@@ -410,7 +411,7 @@
     </nav>
 
     <!-- Hero Section -->
-   <header class="hero">
+    <header class="hero">
         <h3 id="timeGreeting" style="font-size: 1.2rem; margin-bottom: 5px; color: var(--accent-color); letter-spacing: 2px;">Welcome</h3>
         <h1>M&S Premium Rideshare</h1>
         <p>TOP QUALITY RIDE SERVICES | LUXURY | NYC & TRI-STATE</p>
@@ -435,24 +436,28 @@
                 </p>
             </div>
 
-     <div class="driver-grid">
+            <div class="driver-grid">
+                <!-- Driver 1 -->
                 <div class="driver-card">
                     <img src="Islam 2.jpeg" alt="Majharul Islam" onerror="this.src='https://via.placeholder.com/160'">
                     <h3>Majharul Islam</h3>
                     <p style="margin-bottom: 10px;"><b>Licensed NYC TLC Driver</b><br>6+ Years Experience</p>
                     
-                    <div class="status-badge status-offline">
-                        <span class="dot dot-offline"></span> Away (Offline)
+                    <!-- MAJHARUL'S STATUS BADGE -->
+                    <div class="status-badge status-online">
+                        <span class="dot dot-online"></span> Available
                     </div><br>
 
                     <a href="tel:+19394516893" class="btn-main">Text/Call: (939) 451-6893</a>
                 </div>
                 
+                <!-- Driver 2 -->
                 <div class="driver-card">
                     <img src="Shipul Islam_photo.jpg" alt="Shipul Islam" onerror="this.src='https://via.placeholder.com/160'">
                     <h3>Shipul Islam</h3>
                     <p style="margin-bottom: 10px;"><b>Licensed NYC TLC Driver</b><br>9+ Years Experience</p>
                     
+                    <!-- SHIPUL'S STATUS BADGE -->
                     <div class="status-badge status-online">
                         <span class="dot dot-online"></span> Available
                     </div><br>
@@ -599,8 +604,15 @@
 
     <!-- Footer with Business Cards -->
     <footer class="footer-cards">
-        <h2 style="letter-spacing: 1px;">Digital Business Cards</h2>
-        <p>Press and hold the images below to save them directly to your phone's camera roll.</p>
+        <h2 style="letter-spacing: 1px;">Save Our Contact Info</h2>
+        <p style="max-width: 600px; margin: 0 auto 20px;">Never lose our numbers. Tap the button below to instantly save M&S Premium Rideshare directly to your phone's address book.</p>
+        
+        <!-- The vCard Download Button -->
+        <a href="contact.vcf" download class="btn-main" style="margin-bottom: 40px; display: inline-block; background-color: var(--primary-light); color: var(--primary-dark); border: 2px solid var(--accent-color);">
+            📥 Add to Contacts
+        </a>
+
+        <p style="color: #aaaaaa; font-size: 0.9rem; margin-bottom: 30px;">Or press and hold the digital cards below to save them to your camera roll.</p>
         <div class="cards-grid">
             <img src="Screenshot of the business card_front .png" alt="Front of Business Card" onerror="this.src='https://via.placeholder.com/350x200?text=Card+Front'">
             <img src="Screenshot of the business card_Back.png" alt="Back of Business Card" onerror="this.src='https://via.placeholder.com/350x200?text=Card+Back'">
@@ -631,8 +643,25 @@
         </div>
     </div>
 
-    <!-- JavaScript for Tabs, Modal & Slider -->
+    <!-- JavaScript for Tabs, Modal, Slider & Greeting -->
     <script>
+        // Dynamic Time-of-Day Greeting
+        function setGreeting() {
+            const hour = new Date().getHours();
+            let greeting = "Welcome";
+            
+            if (hour >= 5 && hour < 12) {
+                greeting = "Good Morning";
+            } else if (hour >= 12 && hour < 18) {
+                greeting = "Good Afternoon";
+            } else {
+                greeting = "Good Evening";
+            }
+            
+            document.getElementById("timeGreeting").innerText = greeting;
+        }
+        setGreeting(); // Run it immediately
+
         // Tab functionality
         function openTab(evt, tabName) {
             var i, tabcontent, tabbuttons;
@@ -686,7 +715,6 @@
             }
 
             // UPDATE THESE NUMBERS TO MATCH YOUR ACTUAL FLAT RATES
-            // Note: 2026 Tolls factor in the $7.46 MTA E-ZPass rate and $0.75 FHV congestion surcharge.
             const routes = {
                 "Manhattan-JFK": { base: "$85 - $95", tolls: "+ $8.21 (MTA Tunnel + Congestion)" },
                 "Manhattan-LGA": { base: "$65 - $75", tolls: "+ $8.21 (MTA Tunnel + Congestion)" },
@@ -720,7 +748,6 @@
                 resultDiv.innerHTML = "Custom Route: Please text us directly for a quick flat-rate quote including tolls!";
             }
         }    
-        
     </script>
 </body>
 </html>
