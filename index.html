@@ -114,6 +114,47 @@
         @keyframes fadeIn { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
 
         /* Driver Grid */
+        /* Driver Status Badges */
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .status-online {
+            background-color: #e6f4ea;
+            color: #1e8e3e;
+            border: 1px solid #ceead6;
+        }
+        .status-offline {
+            background-color: #f1f3f4;
+            color: #5f6368;
+            border: 1px solid #dadce0;
+        }
+        .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+        }
+        .dot-online {
+            background-color: #1e8e3e;
+            box-shadow: 0 0 6px rgba(30, 142, 62, 0.6);
+            animation: pulse 2s infinite;
+        }
+        .dot-offline {
+            background-color: #5f6368;
+        }
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(30, 142, 62, 0.4); }
+            70% { box-shadow: 0 0 0 6px rgba(30, 142, 62, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(30, 142, 62, 0); }
+        }
         .driver-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; }
         .driver-card { 
             text-align: center; padding: 30px; border: 1px solid var(--border-color); 
@@ -393,19 +434,28 @@
                 </p>
             </div>
 
-            <div class="driver-grid">
-                <!-- Driver 1 -->
+     <div class="driver-grid">
                 <div class="driver-card">
                     <img src="Islam 2.jpeg" alt="Majharul Islam" onerror="this.src='https://via.placeholder.com/160'">
                     <h3>Majharul Islam</h3>
-                    <p><b>Licensed NYC TLC Driver</b><br>6+ Years Experience</p>
+                    <p style="margin-bottom: 10px;"><b>Licensed NYC TLC Driver</b><br>6+ Years Experience</p>
+                    
+                    <div class="status-badge status-online">
+                        <span class="dot dot-online"></span> Available
+                    </div><br>
+
                     <a href="tel:+19394516893" class="btn-main">Text/Call: (939) 451-6893</a>
                 </div>
-                <!-- Driver 2 -->
+                
                 <div class="driver-card">
                     <img src="Shipul Islam_photo.jpg" alt="Shipul Islam" onerror="this.src='https://via.placeholder.com/160'">
                     <h3>Shipul Islam</h3>
-                    <p><b>Licensed NYC TLC Driver</b><br>9+ Years Experience</p>
+                    <p style="margin-bottom: 10px;"><b>Licensed NYC TLC Driver</b><br>9+ Years Experience</p>
+                    
+                    <div class="status-badge status-online">
+                        <span class="dot dot-online"></span> Available
+                    </div><br>
+
                     <a href="tel:+13474854904" class="btn-main">Text/Call: (347) 485-4904</a>
                 </div>
             </div>
